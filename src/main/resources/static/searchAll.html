@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
+            name='viewport'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+</head>
+<body>
+<form>
+    最低绩点:<br>
+    <input type="text" name="low">
+    <br>
+    最高绩点:<br>
+    <input type="text" name="high">
+    <input type="submit" value="Submit">
+</form>
+<button onclick="searchAll()">查询</button>
+</body>
+<script type="text/javascript">
+    function searchAll() {
+        $.ajax({
+            type : 'GET',
+            /*data : {
+                "oaStatus" :oaStatus
+            },*/
+            url : 'work/showAllInfo',
+            dataType : 'json',
+            cache : false,
+            async : true,
+            error : function(request, textStatus, errorThrown) {
+                alert(errorThrown);
+            },
+            success : function(data) {
+                alert(data)
+            }
+        });
+    }
+</script>
+</html>

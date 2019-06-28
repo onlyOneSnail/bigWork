@@ -29,4 +29,30 @@ public class WorkServiceImpl implements WorkService {
 	public List<Student> findAllSeven(String classNm) {
 		return workDao.findAllSeven(classNm);
 	}
+	
+	@Override
+	public List<Student> queryInfoByCondition(String gradeName, String professionalName) {
+		return workDao.queryInfoByCondition(gradeName,professionalName);
+	}
+	
+	@Override
+	public String queryAverage(String gradeName, String professionalName) {
+		return workDao.queryAverage(gradeName,professionalName);
+	}
+	
+	@Override
+	public String queryScore(String low, String high, String gradeName, String professionalName) {
+		return workDao.queryScore(low,high,gradeName,professionalName);
+	}
+	
+	@Override
+	public List<Student> queryHobby(String gradeName, String professionalName, String hobbyName) {
+		return workDao.queryHobby(gradeName,professionalName,hobbyName);
+	}
+	
+	@Override
+	public List<Student> search(String low, String high, String code, List<String> awardName, List<String> honor) {
+		return workDao.search(low,high,code,awardName,honor);
+	}
+	
 }
