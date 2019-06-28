@@ -11,31 +11,46 @@
 </head>
 <body>
 <form>
-    最低绩点:<br>
-    <input type="text" name="low">
+    最低绩点(必填 如：0):<br>
+    <input type="text" id="low" name="low">
     <br>
-    最高绩点:<br>
-    <input type="text" name="high">
-    <input type="submit" value="Submit">
+    最高绩点(必填 如：5.0):<br>
+    <input type="text" id="high" name="high"><br>
+    爱好(选填 如：跑步):<br>
+    <input type="text" id="code" name="code"><br>
+    获奖情况(必填 如：二等奖):<br>
+    <input type="text" id="awardName" name="awardName"><br>
+    荣誉(必填 如：优秀):<br>
+    <input type="text" id="honor" name="honor"><br>
 </form>
-<button onclick="searchAll()">查询</button>
+<button onclick="searchAll()">查询</button><br>
+<div id="responseText">
+</div>
 </body>
 <script type="text/javascript">
     function searchAll() {
+        var low = $('#low').val();
+        var high = $('#high').val();
+        var code = $('#code').val();
+        var awardName = $('#awardName').val();
+        var honor = $('#honor').val();
         $.ajax({
             type : 'GET',
-            /*data : {
-                "oaStatus" :oaStatus
-            },*/
-            url : 'work/showAllInfo',
-            dataType : 'json',
+            data : {
+                "low" :low,"high" :high,"code" :code,"awardName" :awardName,"honor": honor
+            },
+            url : 'work/search',
+            // url : 'work/showAllInfo',
+            dataType : 'text',
             cache : false,
             async : true,
             error : function(request, textStatus, errorThrown) {
                 alert(errorThrown);
             },
             success : function(data) {
-                alert(data)
+                $("#responseText").empty();
+                $("#responseText").append("查询结果:<br>");
+                $("#responseText").append(data);
             }
         });
     }
